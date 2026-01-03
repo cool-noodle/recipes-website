@@ -11,7 +11,7 @@ const LatestRecipe = () => {
         const getLatestItems = async () => {
 
             try {
-                const response = await axios.get('http://localhost:5000/api/all-items');
+                const response = await axios.get('https://recipes-website-backend.vercel.app/api/all-items');
                 setItems(response.data);
             } catch (error) {
                 console.log(error.message || "Error loading data")
