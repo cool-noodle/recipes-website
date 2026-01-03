@@ -11,7 +11,7 @@ import Subscription from './Subscription'
 const Home = () => {
   return (
     <div className='container mx-auto'>
-      <div className='flex flex-col justify-center items-center w-full py-20'>
+      <div className='flex flex-col justify-center items-center w-full py-20 px-6'>
         <Hero />
         <CategoryWrapper />
       </div>
