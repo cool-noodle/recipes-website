@@ -28,7 +28,7 @@ const CategoryPage = () => {
             setLoading(true);
 
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/categories/${category}`);
+                const response = await axios.get(`https://recipes-website-backend-471u.onrender.com/api/categories/${category}`);
                 setItems(response.data);
             } catch (error) {
                 setError(error.message || "Error loading category")

@@ -14,8 +14,6 @@ const Search = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const API_URL = import.meta.env.VITE_API_URL;
-
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const queryParam = params.get('q') || params.get('query') || '';
@@ -26,12 +24,15 @@ const Search = () => {
     }, [])
 
     useEffect(() => {
-        if (!query) return;
-        
+        if (!query) {
+            setResults([]);
+            return;
+        };
+
         const fetchItems = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`${API_URL}/api/items`, {
+                const response = await axios.get(`https://recipes-website-backend-471u.onrender.com/api/items`, {
                     params: { q: query }
                 });
                 setResults(response.data);

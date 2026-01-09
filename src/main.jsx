@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       {
         path: "/items/:id",
         element: <SingleProduct />,
-        loader: ({ params }) => fetch(`${API_URL}/api/items/${params.id}`)
+        loader: ({ params }) => fetch(`https://my-recipes-website.vercel.app/api/items/${params.id}`)
       },
       {
         path: "/recipes",
