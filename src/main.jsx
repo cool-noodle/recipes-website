@@ -17,6 +17,8 @@ import Resources from "./pages/resources/Resources.jsx";
 import About from "./pages/about/About.jsx";
 import Contact from "./pages/contact/Contact.jsx";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,7 +40,7 @@ const router = createBrowserRouter([
       {
         path: "/items/:id",
         element: <SingleProduct />,
-        loader: ({ params }) => fetch(`https://recipes-website-backend.vercel.app/api/items/${params.id}`)
+        loader: ({ params }) => fetch(`${API_URL}/api/items/${params.id}`)
       },
       {
         path: "/recipes",

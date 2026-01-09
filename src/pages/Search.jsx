@@ -27,7 +27,7 @@ const Search = () => {
         const fetchItems = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`https://recipes-website-backend.vercel.app/api/items`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/items`, {
                     params: { q: query }
                 });
                 setResults(response.data);
