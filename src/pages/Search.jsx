@@ -16,13 +16,9 @@ const Search = () => {
 
     const API_URL = import.meta.env.VITE_API_URL;
 
-    if (!API_URL) {
-        console.error("VITE_API_URL is not defined!");
-    }
-
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
-        const queryParam = params.get('query');
+        const queryParam = params.get('q') || params.get('query') || '';
 
         if (queryParam) {
             setQuery(queryParam);
@@ -30,10 +26,9 @@ const Search = () => {
     }, [])
 
     useEffect(() => {
+        if (!query) return;
+        
         const fetchItems = async () => {
-
-            if (!query) return;
-
             setLoading(true);
             try {
                 const response = await axios.get(`${API_URL}/api/items`, {
