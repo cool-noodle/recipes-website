@@ -30,8 +30,6 @@ const Card = ({ item }) => {
     }
     const categoryStyle = getCategoryStyle(item?.category);
 
-    console.log(item?.category)
-
     return (
         <div className='container mx-auto flex justify-center md:justify-start'>
             <div className='max-w-sm'>

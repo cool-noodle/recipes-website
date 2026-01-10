@@ -1,27 +1,7 @@
-// import React, { useEffect } from 'react'
-// import { useLoaderData } from 'react-router'
-
-// const SingleProduct = () => {
-
-//     const item = useLoaderData();
-
-//     useEffect(() => {
-//         window.scrollTo(0, 0)
-//     }, []);
-
-//     const extractNumber = (timeString) => {
-//         let timeArray = timeString.split(" ");
-//         return parseInt(timeArray[0]);
-//     }
-
-//     let prepTimeMinutes = extractNumber(item?.more.prep_time);
-//     let cookTimeMinutes = extractNumber(item?.more.cook_time);
-
-//     const totalMinutes = prepTimeMinutes + cookTimeMinutes;
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
+import { ThreeDots } from 'react-loader-spinner'
 
 const SingleProduct = () => {
     const { id } = useParams();
@@ -43,7 +23,18 @@ const SingleProduct = () => {
         window.scrollTo(0, 0);
     }, [id]);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div className='flex items-center justify-center'>
+        <ThreeDots
+            height="80"
+            width="80"
+            radius="9"
+            color="#00aaff"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{ margin: '20px' }}
+            wrapperClass="custom-loader"
+            visible={true}
+        />
+    </div>;
     if (!item) return <div>Item not found</div>;
 
     const extractNumber = (timeString) => {
@@ -118,8 +109,8 @@ const SingleProduct = () => {
                                         <div key={index}>
                                             {
                                                 !instruction.includes(":") ?
-                                                <li className='pr-2 mt-2'>{instruction}</li> :
-                                                <p className='pr-2 mt-5 text-blue-500 font-medium'>{instruction}</p>
+                                                    <li className='pr-2 mt-2'>{instruction}</li> :
+                                                    <p className='pr-2 mt-5 text-blue-500 font-medium'>{instruction}</p>
                                             }
                                         </div>
                                     ))
@@ -131,8 +122,8 @@ const SingleProduct = () => {
                                 {
                                     item?.notes && item?.notes.map((note, index) => (
                                         !note.includes("/") ?
-                                        <p className='mr-4 mt-2' key={index}>{note}</p> :
-                                        <img key={index} src={note} alt={note} className='rounded-sm md:max-w-[20rem] object-cover w-full'/>
+                                            <p className='mr-4 mt-2' key={index}>{note}</p> :
+                                            <img key={index} src={note} alt={note} className='rounded-sm md:max-w-[20rem] object-cover w-full' />
                                     ))
                                 }
                             </div>

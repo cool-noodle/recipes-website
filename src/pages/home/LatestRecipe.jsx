@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import Card from '../../components/Card';
 import { Link } from 'react-router';
+import { ThreeDots } from 'react-loader-spinner';
 
 const LatestRecipe = () => {
 
@@ -21,8 +22,6 @@ const LatestRecipe = () => {
         getLatestItems();
     }, [])
 
-    console.log(items)
-
     return (
         <div className='px-5 lg:px-10 py-16 sm:py-2'>
             <h2 className='text-3xl font-semibold text-secondary sm:text-5xl 
@@ -33,7 +32,18 @@ const LatestRecipe = () => {
                 {
                     items.length > 0 ? items.slice(-4).map((item, index) => (
                         <Card key={item._id} item={item} />
-                    )) : <p>Loading...</p>
+                    )) : <p>
+                        <ThreeDots
+                            height="80"
+                            width="80"
+                            radius="9"
+                            color="#00aaff"
+                            ariaLabel="three-dots-loading"
+                            wrapperStyle={{ margin: '20px' }}
+                            wrapperClass="custom-loader"
+                            visible={true}
+                        />
+                    </p>
                 }
             </div>
 
