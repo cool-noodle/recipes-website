@@ -1,22 +1,59 @@
-import React, { useEffect } from 'react'
-import { useLoaderData } from 'react-router'
+// import React, { useEffect } from 'react'
+// import { useLoaderData } from 'react-router'
+
+// const SingleProduct = () => {
+
+//     const item = useLoaderData();
+
+//     useEffect(() => {
+//         window.scrollTo(0, 0)
+//     }, []);
+
+//     const extractNumber = (timeString) => {
+//         let timeArray = timeString.split(" ");
+//         return parseInt(timeArray[0]);
+//     }
+
+//     let prepTimeMinutes = extractNumber(item?.more.prep_time);
+//     let cookTimeMinutes = extractNumber(item?.more.cook_time);
+
+//     const totalMinutes = prepTimeMinutes + cookTimeMinutes;
+
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import axios from 'axios';
 
 const SingleProduct = () => {
-
-    const item = useLoaderData();
+    const { id } = useParams();
+    const [item, setItem] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-    }, []);
+        const fetchItem = async () => {
+            try {
+                const res = await axios.get(`https://recipes-website-backend-471u.onrender.com/api/items/${id}`);
+                setItem(res.data);
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchItem();
+        window.scrollTo(0, 0);
+    }, [id]);
+
+    if (loading) return <div>Loading...</div>;
+    if (!item) return <div>Item not found</div>;
 
     const extractNumber = (timeString) => {
+        if (!timeString) return 0;
         let timeArray = timeString.split(" ");
-        return parseInt(timeArray[0]);
+        return parseInt(timeArray[0]) || 0;
     }
 
-    let prepTimeMinutes = extractNumber(item?.more.prep_time);
-    let cookTimeMinutes = extractNumber(item?.more.cook_time);
-
+    const prepTimeMinutes = extractNumber(item.more.prep_time);
+    const cookTimeMinutes = extractNumber(item.more.cook_time);
     const totalMinutes = prepTimeMinutes + cookTimeMinutes;
 
     return (
@@ -26,11 +63,11 @@ const SingleProduct = () => {
                     <picture className='relative'>
                         <div className='absolute top-4 right-4 bg-white text-secondary px-3 py-1
                             rounded-md uppercase tracking-wider'>{item?.more.servings}</div>
-                        <img src={item.thumbnail_image} alt={item.name} className='max-h-[250px] md:max-h-none md:h-[570px] md:rounded-xl md:mx-auto object-cover object-center w-full' />
+                        <img src={item?.thumbnail_image} alt={item?.name} className='max-h-[250px] md:max-h-none md:h-[570px] md:rounded-xl md:mx-auto object-cover object-center w-full' />
                     </picture>
 
                     <div className='px-8'>
-                        <h1 className='text-4xl mt-12 text-secondary'>{item.name}</h1>
+                        <h1 className='text-4xl mt-12 text-secondary'>{item?.name}</h1>
                         <p className='mt-4'>{item?.description || ''}</p>
 
                         <article className='bg-rose-50 mt-6 p-5 rounded-xl'>
@@ -43,12 +80,12 @@ const SingleProduct = () => {
                                 </li>
                                 <li className='pr-2 mt-3'>
                                     <p>
-                                        <span className='font-medium'>זמן הכנה: </span><span>{item.more.prep_time}</span>
+                                        <span className='font-medium'>זמן הכנה: </span><span>{item?.more.prep_time}</span>
                                     </p>
                                 </li>
                                 <li className='pr-2 mt-3'>
                                     <p>
-                                        <span className='font-medium'>זמן בישול / אפייה: </span><span>{item.more.cook_time}</span>
+                                        <span className='font-medium'>זמן בישול / אפייה: </span><span>{item?.more.cook_time}</span>
                                     </p>
                                 </li>
                             </ul>
