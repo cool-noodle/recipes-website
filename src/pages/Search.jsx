@@ -52,18 +52,18 @@ const Search = () => {
     const handleSearch = (event) => {
         setQuery(event.target.value);
 
-        const params = new URLSearchParams(window.location.search);
-        if (value) {
-            params.set("q", value);
-        } else {
-            params.delete("q");
-        }
+        // const params = new URLSearchParams(window.location.search);
+        // if (value) {
+        //     params.set("q", value);
+        // } else {
+        //     params.delete("q");
+        // }
 
-        window.history.replaceState(
-            {},
-            "",
-            `${window.location.pathname}?${params.toString()}`
-        );
+        // window.history.replaceState(
+        //     {},
+        //     "",
+        //     `${window.location.pathname}?${params.toString()}`
+        // );
     }
 
     return (
