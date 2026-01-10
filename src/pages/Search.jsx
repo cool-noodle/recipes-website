@@ -5,6 +5,7 @@ import { IoSearchOutline } from 'react-icons/io5'
 import { useParams } from 'react-router'
 import axios from 'axios'
 import Card from '../components/Card'
+import { ThreeDots } from 'react-loader-spinner'
 
 const Search = () => {
 
@@ -76,7 +77,17 @@ const Search = () => {
                     placeholder='חפשו מתכון' id='search' required="" />
             </div>
 
-            {loading && <div>Loading...</div>}
+            {loading && <div className='flex items-center justify-center'>
+                <ThreeDots
+                    height="80"
+                    width="80"
+                    radius="9"
+                    color="#00aaff"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{ margin: '20px' }}
+                    wrapperClass="custom-loader"
+                    visible={true}
+                /></div>}
             {error && <div>Unknown Error...</div>}
 
             <ul className='mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
