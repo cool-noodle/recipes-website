@@ -32,9 +32,12 @@ const Search = () => {
         const fetchItems = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`https://recipes-website-backend-471u.onrender.com/api/items`, {
-                    params: { q: query }
-                });
+                const response = await axios.get(
+                    "https://recipes-website-backend-471u.onrender.com/api/items",
+                    {
+                        params: { q: query }
+                    }
+                );
                 setResults(response.data);
 
             } catch (error) {
@@ -48,6 +51,19 @@ const Search = () => {
 
     const handleSearch = (event) => {
         setQuery(event.target.value);
+
+        const params = new URLSearchParams(window.location.search);
+        if (value) {
+            params.set("q", value);
+        } else {
+            params.delete("q");
+        }
+
+        window.history.replaceState(
+            {},
+            "",
+            `${window.location.pathname}?${params.toString()}`
+        );
     }
 
     return (
