@@ -32,7 +32,7 @@ const LatestRecipe = () => {
                 {
                     items.length > 0 ? items.slice(-4).map((item, index) => (
                         <Card key={item._id} item={item} />
-                    )) : <p>
+                    )) : <div>
                         <ThreeDots
                             height="80"
                             width="80"
@@ -43,7 +43,7 @@ const LatestRecipe = () => {
                             wrapperClass="custom-loader"
                             visible={true}
                         />
-                    </p>
+                    </div>
                 }
             </div>
 
