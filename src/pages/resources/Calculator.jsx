@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 const Ingredients = {
-    flour: { label: "קמח לבן", gramsPerCup: 120 },
-    sugar: { label: "סוכר לבן", gramsPerCup: 200 },
-    brownSugar: { label: "סוכר חום", gramsPerCup: 220 },
-    butter: { label: "חמאה", gramsPerCup: 227 },
-    oil: { label: "שמן", gramsPerCup: 220 },
-    water: { label: "מים / חלב", gramsPerCup: 240 },
+    flour: { label: "קמח לבן", gramsPerCup: 120, type: "weight" },
+    sugar: { label: "סוכר לבן", gramsPerCup: 200, type: "weight" },
+    brownSugar: { label: "סוכר חום", gramsPerCup: 220, type: "weight" },
+    butter: { label: "חמאה", gramsPerCup: 227, type: "weight" },
+    oil: { label: "שמן", gramsPerCup: 220, type: "volume" },
+    water: { label: "מים / חלב", gramsPerCup: 240, type: "volume" },
 };
 
 const Units = {
-    cup: { label: "כוס", ml: 240 },
-    tbsp: { label: "כף", ml: 15 },
-    tsp: { label: "כפית", ml: 5 },
+    cup: { label: "כוס", ml: 240, placeholder: "כוסות" },
+    tbsp: { label: "כף", ml: 15, placeholder: "כפות" },
+    tsp: { label: "כפית", ml: 5, placeholder: "כפיות" },
 };
 
 function formatCups(value) {
@@ -52,12 +52,44 @@ const Calculator = () => {
     const gramsPerCup = Ingredients[ingredient].gramsPerCup;
     const mlPerUnit = Units[unit].ml;
 
-    const result =
-        value === ""
-            ? ""
-            : mode === "grams"
-                ? formatCups(value / gramsPerCup / (mlPerUnit / 240))
-                : Math.round(value * gramsPerCup * (mlPerUnit / 240));
+    let result = "";
+    if (value !== "") {
+        if (mode === "grams") {
+            // גרמים ↦ נפח
+            if (Ingredients[ingredient].type === "weight") {
+                // חומרים מוצקים: גרם ↦ כוס/כף/כפית
+                result = formatCups(value / gramsPerCup * (240 / mlPerUnit));
+            } else {
+                // נוזלים: גרם ↦ מ"ל (נניח 1 גרם = 1 מ"ל)
+                result = Math.round(value * (240 / mlPerUnit));
+            }
+        } else {
+            // נפח ↦ גרמים / מ"ל
+            if (Ingredients[ingredient].type === "weight") {
+                // חומרים מוצקים: כוס ↦ גרם
+                result = Math.round(value * gramsPerCup * (mlPerUnit / 240));
+            } else {
+                // נוזלים: כוס ↦ מ"ל
+                result = Math.round(value * mlPerUnit);
+            }
+        }
+    }
+
+    const getPlaceholder = () => {
+        const item = Ingredients[ingredient];
+
+        if (mode === "grams") {
+            // מצב: גרמים → נפח
+            if (item.type === "weight") {
+                return `כמה גרם ${item.label} תרצו להמיר?`;
+            } else {
+                return `כמה מ"ל ${item.label} תרצו להמיר?`;
+            }
+        } else {
+            // מצב: נפח → גרמים/מ"ל
+            return `כמה ${Units[unit].placeholder} ${item.label} תרצו להמיר?`;
+        }
+    };
 
 
     return (
@@ -138,7 +170,7 @@ const Calculator = () => {
                     type="number"
                     inputMode="decimal"
                     className="w-full rounded-xl border p-3 text-base"
-                    placeholder={mode === "grams" ? "גרמים" : "כמות"}
+                    placeholder={getPlaceholder()}
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                 />
@@ -148,13 +180,14 @@ const Calculator = () => {
                     <div className="rounded-xl bg-gray-50 p-4 text-center">
                         <div className="text-sm text-gray-500">תוצאה</div>
                         <div className="text-2xl font-bold">
-                            {result} {mode === "grams" ? Units[unit].label : "גרם"}
+                            {result} {Ingredients[ingredient].type === "weight" ? "גרם" : "מ\"ל"}
                         </div>
+
                     </div>
                 )}
 
                 <p className="pt-2 text-center text-xs text-gray-500">
-                    * המרות משוערות • 1 מ"ל = 1 גרם
+                    * המרות משוערות • 1 מ"ל ≈ 1 גרם
                 </p>
             </div>
         </div>
