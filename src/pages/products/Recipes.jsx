@@ -11,7 +11,7 @@ const Recipes = () => {
         const getLatestItems = async () => {
 
             try {
-                const response = await axios.get(`https://recipes-website-backend-471u.onrender.com/api/all-items`);
+                const response = await axios.get(`https://recipes-website-backend-production.up.railway.app/api/all-items`);
                 setItems(response.data);
             } catch (error) {
                 console.log(error.message || "Error loading data")

@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import './Resources.css'
 import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { GiCupcake } from "react-icons/gi";
-
-
+import Calculator from './Calculator';
 
 // const blogData = [
 //     {
@@ -111,6 +110,16 @@ const Resources = () => {
             </h1>
 
             <article className='py-2'>
+
+                <div className='container p-6 mx-auto space-y-8'>
+                    {/* tips */}
+                    <div className='space-y-2 text-center'>
+                        <h2 className='sm:text-3xl text-2xl font-semibold'>מחשבון אפייה</h2>
+                        <p className='text-sm mb-10'>רוצים להמיר מידות? הנה הפתרון שלכם!</p>
+                    </div>
+                    <Calculator />
+                </div>
+
                 <div className='container p-6 mx-auto space-y-8'>
                     {/* tips */}
                     <div className='space-y-2 text-center'>
@@ -164,6 +173,8 @@ const Resources = () => {
                             ))
                         }
                     </div>
+
+
 
                     {/* <div className='grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4'>
                         {

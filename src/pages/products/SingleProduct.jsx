@@ -11,7 +11,7 @@ const SingleProduct = () => {
     useEffect(() => {
         const fetchItem = async () => {
             try {
-                const res = await axios.get(`https://recipes-website-backend-471u.onrender.com/api/items/${id}`);
+                const res = await axios.get(`https://recipes-website-backend-production.up.railway.app/api/items/${id}`);
                 setItem(res.data);
             } catch (err) {
                 console.error(err);

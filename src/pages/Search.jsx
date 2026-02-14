@@ -34,7 +34,7 @@ const Search = () => {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    "https://recipes-website-backend-471u.onrender.com/api/items",
+                    "https://recipes-website-backend-production.up.railway.app/api/items",
                     {
                         params: { q: query }
                     }
