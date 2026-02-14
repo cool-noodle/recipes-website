@@ -51,26 +51,24 @@ const Calculator = () => {
 
     const gramsPerCup = Ingredients[ingredient].gramsPerCup;
     const mlPerUnit = Units[unit].ml;
-
     let result = "";
     if (value !== "") {
+        const item = Ingredients[ingredient];
+        const unitMl = Units[unit].ml;
+
         if (mode === "grams") {
-            // גרמים ↦ נפח
-            if (Ingredients[ingredient].type === "weight") {
-                // חומרים מוצקים: גרם ↦ כוס/כף/כפית
-                result = formatCups(value / gramsPerCup * (240 / mlPerUnit));
+            if (item.type === "weight") {
+                const gramsPerUnit = item.gramsPerCup * (unitMl / 240);
+                result = formatCups(value / gramsPerUnit);
             } else {
-                // נוזלים: גרם ↦ מ"ל (נניח 1 גרם = 1 מ"ל)
-                result = Math.round(value * (240 / mlPerUnit));
+                result = formatCups(value / unitMl);
             }
         } else {
-            // נפח ↦ גרמים / מ"ל
-            if (Ingredients[ingredient].type === "weight") {
-                // חומרים מוצקים: כוס ↦ גרם
-                result = Math.round(value * gramsPerCup * (mlPerUnit / 240));
+            if (item.type === "weight") {
+                const gramsPerUnit = item.gramsPerCup * (unitMl / 240);
+                result = Math.round(value * gramsPerUnit);
             } else {
-                // נוזלים: כוס ↦ מ"ל
-                result = Math.round(value * mlPerUnit);
+                result = Math.round(value * unitMl);
             }
         }
     }
@@ -180,8 +178,15 @@ const Calculator = () => {
                     <div className="rounded-xl bg-gray-50 p-4 text-center">
                         <div className="text-sm text-gray-500">תוצאה</div>
                         <div className="text-2xl font-bold">
-                            {result} {Ingredients[ingredient].type === "weight" ? "גרם" : "מ\"ל"}
+                            {result}{" "}
+                            {mode === "grams"
+                                ? Units[unit].placeholder // כוס/כף/כפית
+                            : Ingredients[ingredient].type === "weight"
+                            ? "גרם"
+                            : "מ\"ל"
+    }
                         </div>
+
 
                     </div>
                 )}
