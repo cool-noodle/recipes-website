@@ -26,12 +26,12 @@ function CategoryList() {
             <CategoryItem name="תוספות" href="/catagories/sides" backgroundColor="#feefc9" color="#d16400" />
             <CategoryItem name="משקאות" href="/catagories/drinks" backgroundColor="#ffeae3" color="#f0493e" />  */}
 
-            <CategoryItem name="סלטים" href="/categories/salads" backgroundColor="#ffeae3" color="#f0493e"/>
-            <CategoryItem name="מרקים ותבשילים" href="/categories/soupsAndStews" backgroundColor="#feefc9" color="#d16400"/>
-            <CategoryItem name="מאפים ולחמים" href="/categories/breadsAndSavoryBakes" backgroundColor="#fff4cc" color="#b7791f"/>
-            <CategoryItem name="פשטידות" href="/categories/pies" backgroundColor="#e6f7ed" color="#1b7f4c"/>
-            <CategoryItem name="עוגות" href="/categories/cakes" backgroundColor="#e5f7f3" color="#1f8787"/>
-            <CategoryItem name="עוגיות" href="/categories/cookies" backgroundColor="#efedfa" color="#3c3a8f"/>
+            <CategoryItem name="סלטים" href="/categories/salads" backgroundColor="#ffeae3" color="#f0493e" />
+            <CategoryItem name="מרקים ותבשילים" href="/categories/soupsAndStews" backgroundColor="#feefc9" color="#d16400" />
+            <CategoryItem name="מאפים ולחמים" href="/categories/breadsAndSavoryBakes" backgroundColor="#fff4cc" color="#b7791f" />
+            <CategoryItem name="פשטידות" href="/categories/pies" backgroundColor="#e6f7ed" color="#1b7f4c" />
+            <CategoryItem name="עוגות" href="/categories/cakes" backgroundColor="#e5f7f3" color="#1f8787" />
+            <CategoryItem name="עוגיות" href="/categories/cookies" backgroundColor="#efedfa" color="#3c3a8f" />
             <CategoryItem name="קינוחים" href="/categories/desserts" backgroundColor="#fde2f3" color="#b83280" />
         </div>
     )

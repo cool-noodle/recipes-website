@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: "/catagories/:category",
+        path: "/categories/:category",
         element: <CategoryPage />
       },
       {
