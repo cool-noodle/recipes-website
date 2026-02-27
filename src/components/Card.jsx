@@ -5,23 +5,45 @@ import { GoClock } from "react-icons/go";
 
 const Card = ({ item }) => {
 
+    // const categoryStyles = {
+    //     entrees: { backgroundColor: "#f0f5c4", color: "#59871f" },
+    //     breakfast: { backgroundColor: "#efedfa", color: "#3c3a8f" },
+    //     lunch: { backgroundColor: "#e5f7f3", color: "#1f8787" },
+    //     desserts: { backgroundColor: "#e8f5fa", color: "#397a9e" },
+    //     sides: { backgroundColor: "#feefc9", color: "#d16400" },
+    //     drinks: { backgroundColor: "#e6f7ed", color: "#1b7f4c" },
+    //     default: { backgroundColor: "#fff", color: "#000" }
+    // }
+
+    // const categoryNames = {
+    //     entrees: "מנות ראשונות",
+    //     breakfast: "ארוחות בוקר",
+    //     lunch: "ארוחות צהריים",
+    //     desserts: "קינוחים",
+    //     sides: "תוספות",
+    //     drinks: "משקאות",
+    //     default: "לא מוגדר"
+    // }
+
     const categoryStyles = {
-        entrees: { backgroundColor: "#f0f5c4", color: "#59871f" },
-        breakfast: { backgroundColor: "#efedfa", color: "#3c3a8f" },
-        lunch: { backgroundColor: "#e5f7f3", color: "#1f8787" },
-        desserts: { backgroundColor: "#e8f5fa", color: "#397a9e" },
-        sides: { backgroundColor: "#feefc9", color: "#d16400" },
-        drinks: { backgroundColor: "#ffeae3", color: "#f0493e" },
+        salads: { backgroundColor: "#ffeae3", color: "#f0493e" },
+        soupsAndStews: { backgroundColor: "#feefc9", color: "#d16400" },
+        breadsAndSavoryBakes: { backgroundColor: "#fff4cc", color: "#b7791f" },
+        pies: { backgroundColor: "#e6f7ed", color: "#1b7f4c" },
+        cakes: { backgroundColor: "#e5f7f3", color: "#1f8787" },
+        cookies: { backgroundColor: "#efedfa", color: "#3c3a8f" },
+        desserts: { backgroundColor: "#fde2f3", color: "#b83280" } ,
         default: { backgroundColor: "#fff", color: "#000" }
     }
 
     const categoryNames = {
-        entrees: "מנות ראשונות",
-        breakfast: "ארוחות בוקר",
-        lunch: "ארוחות צהריים",
+        salads: "סלטים",
+        soupsAndStews: "מרקים ותבשילים",
+        breadsAndSavoryBakes: "מאפים ולחמים",
+        pies: "משקאות",
+        cakes: "עוגות",
+        cookies: "עוגיות",
         desserts: "קינוחים",
-        sides: "תוספות",
-        drinks: "משקאות",
         default: "לא מוגדר"
     }
 

@@ -14,12 +14,13 @@ const CategoryPage = () => {
     const [error, setError] = useState(null);
 
     const categoryNames = {
-        entrees: "מנות ראשונות",
-        breakfast: "ארוחות בוקר",
-        lunch: "ארוחות צהריים",
+        salads: "סלטים",
+        soupsAndStews: "מרקים ותבשילים",
+        breadsAndSavoryBakes: "מאפים ולחמים",
+        pies: "פשטידות",
+        cakes: "עוגות",
+        cookies: "עוגיות",
         desserts: "קינוחים",
-        sides: "תוספות",
-        drinks: "משקאות",
         default: "לא מוגדר"
     }
 
